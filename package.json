@@ -27,6 +27,18 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
+  "browser": "socket.io-stream.js",
+  "exports": {
+    ".": {
+      "node": "./index.js",
+      "browser": "./socket.io-stream.js",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/nkzawa/socket.io-stream.git"
