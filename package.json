@@ -1,6 +1,6 @@
 {
   "name": "socket.io-stream",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "stream for socket.io",
   "author": "Naoyuki Kanezawa <naoyuki.kanezawa@gmail.com>",
   "contributors": [
@@ -11,6 +11,10 @@
     {
       "name": "Aaron O'Mullan",
       "email": "aaron.omullan@friendco.de"
+    },
+    {
+      "name": "Sawa",
+      "email": "sawa.yeung.ext@siemens.com"
     }
   ],
   "keywords": [
@@ -21,6 +25,8 @@
     "upload",
     "download"
   ],
+  "main": "index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/nkzawa/socket.io-stream.git"
@@ -31,16 +37,12 @@
   },
   "dependencies": {
     "component-bind": "~1.0.0",
-    "debug": "~2.2.0"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
-    "blob": "0.0.4",
-    "browserify": "~13.1.0",
+    "browserify": "^17.0.0",
     "expect.js": "~0.3.1",
-    "mocha": "~3.0.2",
-    "socket.io": "~1.4.8",
-    "socket.io-client": "~1.4.8",
-    "zuul": "~3.11.1",
-    "zuul-ngrok": "~4.0.0"
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3"
   }
 }
