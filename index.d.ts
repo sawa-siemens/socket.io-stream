@@ -44,6 +44,7 @@ export interface BlobReadStreamOptions {
    * @default false
    */
   synchronous?: boolean;
+  highWaterMark?: number;
 }
 
 /**
