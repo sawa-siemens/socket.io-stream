@@ -1,5 +1,5 @@
 {
-  "name": "socket.io-stream",
+  "name": "@sawa-siemens/socket.io-stream",
   "version": "0.10.0",
   "description": "stream for socket.io",
   "author": "Naoyuki Kanezawa <naoyuki.kanezawa@gmail.com>",
@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nkzawa/socket.io-stream.git"
+    "url": "https://github.com/sawa-siemens/socket.io-stream.git"
   },
   "scripts": {
     "prepublish": "make build",
