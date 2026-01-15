@@ -1,6 +1,6 @@
 {
   "name": "@sawa-siemens/socket.io-stream",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "stream for socket.io",
   "author": "Naoyuki Kanezawa <naoyuki.kanezawa@gmail.com>",
   "contributors": [
@@ -27,11 +27,11 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
-  "browser": "socket.io-stream.js",
+  "browser": "index.js",
   "exports": {
     ".": {
       "node": "./index.js",
-      "browser": "./socket.io-stream.js",
+      "browser": "./index.js",
       "default": "./index.js"
     },
     "./package.json": "./package.json"
