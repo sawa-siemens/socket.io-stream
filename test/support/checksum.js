@@ -1,6 +1,6 @@
 var util = require('util');
 var crypto = require('crypto');
-var PassThrough = require('stream').PassThrough;
+var PassThrough = require('readable-stream').PassThrough;
 
 module.exports = Checksum;
 
