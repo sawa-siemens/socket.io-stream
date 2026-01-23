@@ -37,24 +37,28 @@
     "./package.json": "./package.json"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sawa-siemens/socket.io-stream.git"
   },
   "scripts": {
-    "prepublish": "make build",
-    "test": "make test"
+    "build": "node esbuild.config.js",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "component-bind": "~1.0.0",
-    "debug": "^4.3.4"
+    "debug": "^4.3.4",
+    "readable-stream": "^4.5.2"
   },
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "expect.js": "~0.3.1",
+    "esbuild": "^0.27.2",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
     "socket.io": "^4.8.3",
-    "socket.io-client": "^4.8.3"
+    "socket.io-client": "^4.8.3",
+    "vitest": "^3.0.4"
   }
 }

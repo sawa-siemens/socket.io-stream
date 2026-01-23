@@ -1,7 +1,7 @@
 # @sawa-siemens/socket.io-stream
 
-[![NPM version](https://img.shields.io/npm/v/%40sawa-siemens%2Fsocket.io-stream?style=flat-square&color=%23099)
-](https://img.shields.io/npm/v/%40sawa-siemens%2Fsocket.io-stream?style=flat-square&color=%23099)
+[![Tests](https://github.com/sawa-siemens/socket.io-stream/actions/workflows/test.yml/badge.svg)](https://github.com/sawa-siemens/socket.io-stream/actions/workflows/test.yml)
+[![NPM version](https://img.shields.io/npm/v/%40sawa-siemens%2Fsocket.io-stream?style=flat-square&color=%23099)](https://www.npmjs.com/package/@sawa-siemens/socket.io-stream)
 
 This is the module for bidirectional binary data transfer with Stream API through [Socket.IO](https://github.com/socketio/socket.io).  
 🚨 The purpose of fork @sawa-siemens/socket-io.stream:
