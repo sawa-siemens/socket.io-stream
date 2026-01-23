@@ -1,13 +1,17 @@
-# Socket.IO stream
+# @sawa-siemens/socket.io-stream
 
-[![Build Status](https://travis-ci.org/nkzawa/socket.io-stream.png?branch=master)](https://travis-ci.org/nkzawa/socket.io-stream)
-[![NPM version](https://badge.fury.io/js/socket.io-stream.png)](http://badge.fury.io/js/socket.io-stream)
+[![NPM version](https://img.shields.io/npm/v/%40sawa-siemens%2Fsocket.io-stream?style=flat-square&color=%23099)
+](https://img.shields.io/npm/v/%40sawa-siemens%2Fsocket.io-stream?style=flat-square&color=%23099)
 
-This is the module for bidirectional binary data transfer with Stream API through [Socket.IO](https://github.com/socketio/socket.io).
+This is the module for bidirectional binary data transfer with Stream API through [Socket.IO](https://github.com/socketio/socket.io).  
+🚨 The purpose of fork @sawa-siemens/socket-io.stream:
+
+1. Add support for Typescript type interface
+2. Original package is lack of maintenance in security auditing. Aim at free npm audit vulnerabilities for it's dependency.
 
 ## Installation
 
-    npm install socket.io-stream
+    npm install @sawa-siemens/socket.io-stream
 
 ## Usage
 
@@ -20,12 +24,12 @@ To receive streams, you just wrap `socket` with `socket.io-stream`, then listen 
 Server:
 
 ```js
-var io = require('socket.io').listen(80);
-var ss = require('socket.io-stream');
-var path = require('path');
+var io = require("socket.io").listen(80);
+var ss = require("@sawa-siemens/socket.io-stream");
+var path = require("path");
 
-io.of('/user').on('connection', function(socket) {
-  ss(socket).on('profile-image', function(stream, data) {
+io.of("/user").on("connection", function (socket) {
+  ss(socket).on("profile-image", function (stream, data) {
     var filename = path.basename(data.name);
     stream.pipe(fs.createWriteStream(filename));
   });
@@ -37,14 +41,14 @@ io.of('/user').on('connection', function(socket) {
 Client:
 
 ```js
-var io = require('socket.io-client');
-var ss = require('socket.io-stream');
+var io = require("socket.io-client");
+var ss = require("@sawa-siemens/socket.io-stream");
 
-var socket = io.connect('http://example.com/user');
+var socket = io.connect("http://example.com/user");
 var stream = ss.createStream();
-var filename = 'profile.jpg';
+var filename = "profile.jpg";
 
-ss(socket).emit('profile-image', stream, {name: filename});
+ss(socket).emit("profile-image", stream, { name: filename });
 fs.createReadStream(filename).pipe(stream);
 ```
 
@@ -52,25 +56,34 @@ You can stream data from a client to server, and vice versa.
 
 ```js
 // send data
-ss(socket).on('file', function(stream) {
-  fs.createReadStream('/path/to/file').pipe(stream);
+ss(socket).on("file", function (stream) {
+  fs.createReadStream("/path/to/file").pipe(stream);
 });
 
 // receive data
-ss(socket).emit('file', stream);
-stream.pipe(fs.createWriteStream('file.txt'));
+ss(socket).emit("file", stream);
+stream.pipe(fs.createWriteStream("file.txt"));
+```
+
+## Support ESM import style
+
+```js
+import ss from "@sawa-siemens/socket.io-stream";
+// ...
+const stream = ss.createStream({ highWaterMark: 512 * 1024 });
+//...
 ```
 
 ### Browser
 
 This module can be used on the browser. To do so, just copy a file to a public directory.
 
-    $ cp node_modules/socket.io-stream/socket.io-stream.js somewhere/public/
+    $ cp node_modules/@sawa-siemens/socket.io-stream/socket.io-stream.js somewhere/public/
 
 You can also use [browserify](http://github.com/substack/node-browserify) to create your own bundle.
 
     $ npm install browserify -g
-    $ cd node_modules/socket.io-stream
+    $ cd node_modules/@sawa-siemens/socket.io-stream
     $ browserify index.js -s ss > socket.io-stream.js
 
 ```html
@@ -80,18 +93,18 @@ You can also use [browserify](http://github.com/substack/node-browserify) to cre
 <script src="/js/socket.io-stream.js"></script>
 <script src="/js/jquery.js"></script>
 <script>
-$(function() {
-  var socket = io.connect('/foo');
+  $(function () {
+    var socket = io.connect("/foo");
 
-  $('#file').change(function(e) {
-    var file = e.target.files[0];
-    var stream = ss.createStream();
+    $("#file").change(function (e) {
+      var file = e.target.files[0];
+      var stream = ss.createStream();
 
-    // upload a file to the server.
-    ss(socket).emit('file', stream, {size: file.size});
-    ss.createBlobReadStream(file).pipe(stream);
+      // upload a file to the server.
+      ss(socket).emit("file", stream, { size: file.size });
+      ss.createBlobReadStream(file).pipe(stream);
+    });
   });
-});
 </script>
 ```
 
@@ -103,9 +116,9 @@ You can track upload progress like the following:
 var blobStream = ss.createBlobReadStream(file);
 var size = 0;
 
-blobStream.on('data', function(chunk) {
+blobStream.on("data", function (chunk) {
   size += chunk.length;
-  console.log(Math.floor(size / file.size * 100) + '%');
+  console.log(Math.floor((size / file.size) * 100) + "%");
   // -> e.g. '42%'
 });
 
@@ -119,7 +132,6 @@ You have to set `forceBase64` option `true` when using the library with socket.i
 ```js
 ss.forceBase64 = true;
 ```
-
 
 ## Documentation
 
@@ -171,11 +183,11 @@ ss(socket).on('foo', function(stream) {
 ### ss.createStream([options])
 
 - options `Object`
-    - highWaterMark `Number`
-    - encoding `String`
-    - decodeStrings `Boolean`
-    - objectMode `Boolean`
-    - allowHalfOpen `Boolean` if `true`, then the stream won't automatically close when the other endpoint ends. Default to `false`.
+  - highWaterMark `Number`
+  - encoding `String`
+  - decodeStrings `Boolean`
+  - objectMode `Boolean`
+  - allowHalfOpen `Boolean` if `true`, then the stream won't automatically close when the other endpoint ends. Default to `false`.
 - return `Duplex Stream`
 
 Create a new duplex stream. See [the docs](http://nodejs.org/api/stream.html) for the details of stream and `options`.
@@ -187,16 +199,16 @@ var stream = ss.createStream();
 var stream = ss.createStream({
   highWaterMark: 1024,
   objectMode: true,
-  allowHalfOpen: true
+  allowHalfOpen: true,
 });
 ```
 
 ### ss.createBlobReadStream(blob, [options])
 
 - options `Object`
-    - highWaterMark `Number`
-    - encoding `String`
-    - objectMode `Boolean`
+  - highWaterMark `Number`
+  - encoding `String`
+  - objectMode `Boolean`
 - return `Readable Stream`
 
 Create a new readable stream for [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and [File](https://developer.mozilla.org/en-US/docs/Web/API/File) on browser. See [the docs](http://nodejs.org/api/stream.html) for the details of stream and `options`.
