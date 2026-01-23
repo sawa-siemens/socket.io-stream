@@ -1,7 +1,8 @@
 {
   "name": "@sawa-siemens/socket.io-stream",
-  "version": "0.10.1",
+  "version": "1.0.2",
   "description": "stream for socket.io",
+  "license": "MIT",
   "author": "Naoyuki Kanezawa <naoyuki.kanezawa@gmail.com>",
   "contributors": [
     {
@@ -41,13 +42,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sawa-siemens/socket.io-stream.git"
+    "url": "git+https://github.com/sawa-siemens/socket.io-stream.git"
   },
   "scripts": {
     "build": "node esbuild.config.js",
     "prepare": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "component-bind": "~1.0.0",
